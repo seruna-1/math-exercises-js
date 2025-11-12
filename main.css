@@ -1,0 +1,23 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 40px;
+}
+header {
+	text-align: center;
+	font-size: 1.2rem;
+}
+div{
+	padding: 10px;
+	border: 1px solid #ddd;
+	background-color: #f9f9f9;
+	margin-bottom: 15px;
+}
+div[name] {
+	margin-top: 20px;
+}
+div[id]::before {
+	content: attr(name);
+	display: block;
+	text-align: right;
+	padding-right: 15px;
+}
