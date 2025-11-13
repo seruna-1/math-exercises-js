@@ -15,9 +15,8 @@ div{
 div[name] {
 	margin-top: 20px;
 }
-div[id]::before {
-	content: attr(name);
+div p[class="title"] {
 	display: block;
-	text-align: right;
+	text-align: center;
 	padding-right: 15px;
 }

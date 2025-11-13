@@ -5,38 +5,75 @@ window.MathJax = {
 
 document.addEventListener('DOMContentLoaded', main)
 
+// Class name to displayable name
+const referenceable_class_to_display_name = {
+	"proposition" : "Proposição"
+};
+
 function main ()
 {
-	const internalReferenceables = document.querySelectorAll("div[id]");
+	const internalReferenceables = document.querySelectorAll("div[name], p[name]");
 
-	const anchors = document.querySelectorAll("a");
+	const referenceable_index = {"global": 1};
+
+	for (const referenceable of internalReferenceables)
+	{
+		referenceable.setAttribute("id", `referenceable_${referenceable_index["global"]}`);
+
+		referenceable_index["global"] += 1;
+
+		referenceableClassName = referenceable.getAttribute("class");
+
+		referenceable.setAttribute("data-referenceable-class", referenceableClassName);
+
+		if ( !(referenceableClassName in referenceable_index) )
+		{ referenceable_index[referenceableClassName] = 1; }
+
+		let current_index = referenceable_index[referenceableClassName];
+
+		referenceable.setAttribute("data-index", current_index);
+
+		referenceable_index[referenceableClassName] = current_index+1;
+
+		// Title
+		const title = document.createElement("p");
+
+		referenceableClassDisplayName = referenceable_class_to_display_name[referenceableClassName];
+
+		title.textContent = `${referenceableClassDisplayName} ${current_index}: ${referenceable.getAttribute("name")}`;
+
+		title.setAttribute("class", "title");
+
+		referenceable.prepend(title);
+	}
+
+	// Anchor normalization
+
+	const anchors = document.querySelectorAll("a:not([href])");
 
 	for (const anchor of anchors)
 	{
-		const href = anchor.getAttribute("href");
+		let found_referenced = false;
+		let referenceable = null;
+		let referenceable_index = 0;
 
-		if ( href.startsWith("#") )
+		// Look for referenceable with name equal to anchor text content
+		while (referenceable_index < internalReferenceables.length && !found_referenced)
 		{
-			let id = href.slice(1);
+			referenceable = internalReferenceables[referenceable_index];
 
-			let found_referenced = false;
-			let referenceable = null;
-			let referenceable_index = 0;
-
-			while (referenceable_index < internalReferenceables.length && !found_referenced)
+			if (referenceable.getAttribute("name") == anchor.textContent)
 			{
-				referenceable = internalReferenceables[referenceable_index];
-				if (referenceable.id == id)
-				{
-					found_referenced = true;
-					console.log(referenceable)
-					referenceable.setAttribute("name", `Proposição ${referenceable_index}`);
+				found_referenced = true;
 
-					anchor.textContent = `Proposição ${referenceable_index} (${id})`;
-				}
+				anchor.setAttribute("href", `#${referenceable.id}`);
 
-				referenceable_index++;
+				referenceableClassDisplayName = referenceable_class_to_display_name[referenceableClassName];
+
+				anchor.textContent = `[${referenceable.firstChild.textContent}]`;
 			}
+
+			referenceable_index++;
 		}
 	}
 }
