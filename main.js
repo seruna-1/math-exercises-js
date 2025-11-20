@@ -33,15 +33,22 @@ function main ()
 		// TODO: handle multiple referenceable classes (classList)
 		referenceableClassName = referenceable.getAttribute("class");
 
-		// Reset local counter on new section
-		let section = referenceable.parentElement;
-
-		while ( section.tagName != "SECTION" )
+		if (referenceableClassName == "local")
 		{
-			section = section.parentElement;
-		}
+			// Reset local counter on new section
+			let section = referenceable.parentElement;
 
-		if (referenceableClassName == "local") { last_section = section; }
+			while ( section.tagName != "SECTION" )
+			{
+				section = section.parentElement;
+			}
+
+			if (last_section != section)
+			{
+				last_section = section;
+				referenceable_index["local"] = 1;
+			}
+		}
 
 		referenceable.setAttribute("data-referenceable-class", referenceableClassName);
 
