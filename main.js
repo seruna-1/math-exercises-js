@@ -7,47 +7,76 @@ document.addEventListener('DOMContentLoaded', main)
 
 // Class name to displayable name
 const referenceable_class_to_display_name = {
-	"proposition" : "Proposição"
+	"proposition" : "Proposição",
+	"local" : "Proposição temporária"
 };
 
 function main ()
 {
 	const internalReferenceables = document.querySelectorAll("div[name], p[name]");
 
-	const referenceable_index = {"global": 1};
+	const referenceable_index = {
+		"global": 1, // Document wide counter (every referenceable has)
+		"local": 1 // Local counter, lasts inside a section
+		// Rest of class counters
+	};
+
+	let last_section = null;
 
 	for (const referenceable of internalReferenceables)
 	{
+		// Assign id to be able to create anchors to it
 		referenceable.setAttribute("id", `referenceable_${referenceable_index["global"]}`);
 
 		referenceable_index["global"] += 1;
 
+		// TODO: handle multiple referenceable classes (classList)
 		referenceableClassName = referenceable.getAttribute("class");
+
+		// Reset local counter on new section
+		let section = referenceable.parentElement;
+
+		while ( section.tagName != "SECTION" )
+		{
+			section = section.parentElement;
+		}
+
+		if (referenceableClassName == "local") { last_section = section; }
 
 		referenceable.setAttribute("data-referenceable-class", referenceableClassName);
 
+		// Create counter for this class if first occurence
 		if ( !(referenceableClassName in referenceable_index) )
 		{ referenceable_index[referenceableClassName] = 1; }
 
+		// Class counter current value
 		let current_index = referenceable_index[referenceableClassName];
 
-		referenceable.setAttribute("data-index", current_index);
-
+		// Increase class counter
 		referenceable_index[referenceableClassName] = current_index+1;
-
-		// Title
-		const title = document.createElement("p");
 
 		referenceableClassDisplayName = referenceable_class_to_display_name[referenceableClassName];
 
-		title.textContent = `${referenceableClassDisplayName} ${current_index}: ${referenceable.getAttribute("name")}`;
+		let title = null;
+
+		// Title
+		if (referenceable.tagName == "DIV")
+		{
+			title = document.createElement("p");
+			title.textContent = `${referenceableClassDisplayName} ${current_index}: ${referenceable.getAttribute("name")}`;
+			referenceable.prepend(title);
+		}
+		else if (referenceable.tagName == "P")
+		{
+			title = document.createElement("span");
+			title.textContent = ` [${referenceableClassDisplayName} ${current_index}: ${referenceable.getAttribute("name")}]`;
+			referenceable.append(title);
+		}
 
 		title.setAttribute("class", "title");
-
-		referenceable.prepend(title);
 	}
 
-	// Anchor normalization
+	// Anchor completion
 
 	const anchors = document.querySelectorAll("a:not([href])");
 
@@ -70,7 +99,14 @@ function main ()
 
 				referenceableClassDisplayName = referenceable_class_to_display_name[referenceableClassName];
 
-				anchor.textContent = `[${referenceable.firstChild.textContent}]`;
+				if (referenceable.classList.contains("local"))
+				{
+					anchor.textContent = `[${referenceable.lastChild.textContent}]`;
+				}
+				else
+				{
+					anchor.textContent = `[${referenceable.firstChild.textContent}]`;
+				}
 			}
 
 			referenceable_index++;
