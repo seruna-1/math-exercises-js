@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AsciiMath with MathJax Example</title>
+
+	<link rel="stylesheet" href="main.css">
+
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"></script>
+
+	<script src="main.js"></script>
+</head>
+
+<body>
+	<header>
+		<p>Universidade Federal do Pará</p>
+
+		<p>Instituto de Ciências Exatas e Naturais</p>
+
+		<p>Faculdade de Computação</p>
+
+		<p>Matemática discreta</p>
+	</header>
+
+	<main>
+		<h1>1ª Lista de matemática discreta</h1>
+
+		<p>Aluno: Mateus Cezário Barreto.</p>
+
+		<p>Nota: Ao lado de cada equivalência dentro de uma cadeia de equivalências, está grafada a propriedade usada para se chegar nela a partir da anterior.</p>
+
+		<section>
+			<h2>Questão 1</h2>
+
+			<div class="proposition" name="terceiro excluído">
+				<p>`p vv not p equiv top`</p>
+
+				<p>`p ^^ not p equiv bot`</p>
+			</div>
+
+			<div class="proposition" name="idempotência">
+				<p>`p vv p equiv p`</p>
+
+				<p>`p ^^ p equiv p`</p>
+			</div>
+
+			<div class="proposition" name="de'morgan">
+				<p>`not (p vv q) equiv (not p ^^ not q)`</p>
+			</div>
+
+			<div class="proposition" name="implicação e disjunção">
+				<p>`p => q equiv not p vv q`</p>
+			</div>
+
+			<div class="proposition" name="comutatividade">
+				<p>`p vv q equiv q vv p`</p>
+
+				<p>`p ^^ q equiv q ^^ p`</p>
+			</div>
+
+			<div class="proposition" name="associatividade">
+				<p>`(p vv q) vv r equiv p vv (q vv r) equiv p vv q vv r`</p>
+
+				<p>`(p ^^ q) ^^ r equiv p ^^ (q ^^ r) equiv p ^^ q ^^ r`</p>
+			</div>
+
+			<div class="proposition" name="dominação">
+				<p>`p vv top equiv top`</p>
+
+				<p>`p ^^ bot equiv bot`</p>
+			</div>
+
+			<div class="proposition" name="absorção">
+				<p>`(p ^^ q) vv p equiv p`</p>
+
+				<p>`(p vv q) ^^ p equiv p`</p>
+			</div>
+
+			<div class="proposition" name="identidade">
+				<p>`p vv bot equiv p`</p>
+
+				<p>`p ^^ top equiv p`</p>
+			</div>
+
+			<div class="proposition" name="contradição">
+				<p>`p => not p equiv not p`</p>
+
+				<p>`because p => not p equiv (not p vv not p)` <a>implicação e disjunção</a></p>
+
+				<p>`equiv not p` <a>idempotência</a> </p>
+			</div>
+
+			<div class="proposition" name="consequentia mirabilis">
+				<p>`not p => p equiv p`</p>
+
+				<p>`because not p => p equiv (p vv p)` <a>implicação e disjunção</a></p>
+
+				<p>`equiv p` <a>idempotência</a> </p>
+			</div>
+
+			<div class="proposition" name="bi-implicação">
+				<p>`(p <=> q) equiv (p => q) ^^ (q => p)`</p>
+			</div>
+
+			<section>
+				<h3>Letra A</h2>
+
+				<div class="proposition">
+					<p>`not p => (q => r)`</p>
+
+					<p>`equiv p vv (q => r)` <a>implicação e disjunção</a> </p>
+
+					<p>`equiv p vv (not q vv r)` <a>implicação e disjunção</a> </p>
+
+					<p>`equiv p vv not q vv r` <a>associatividade</a> </p>
+
+					<p>`equiv not q vv p vv r` <a>comutatividade</a> </p>
+
+					<p>`equiv not q vv (p vv r)` <a>associatividade</a> </p>
+
+					<p>`equiv q => (p vv r)` <a>implicação e disjunção</a> </p>
+				</div>
+			</section>
+
+			<section>
+				<h3>Letra B</h2>
+
+				<div class="proposition">
+					<p>`(p => r) vv (q => r)`</p>
+
+					<p>`equiv (not p vv r) vv (not q vv r)` <a>implicação e disjunção</a> </p>
+
+					<p>`equiv not p vv r vv not q vv r` <a>associatividade da disjunção</a></p>
+
+					<p>`equiv not p vv not q vv r vv r` <a>associatividade da disjunção</a></p>
+
+					<p>`equiv not p vv not q vv r` <a>identidade da disjunção</a> </p>
+
+					<p>`equiv (not p vv not q) vv r` <a>associatividade da disjunção</a> </p>
+
+					<p>`equiv not (not p vv not q) => r` <a>implicação e disjunção</a> </p>
+
+					<p>`equiv (p ^^ q) => r` <a>de'morgan</a> </p>
+				</div>
+			</section>
+
+			<section>
+				<h3>Letra C</h2>
+
+				<div class="proposition">
+					<p>`not p ^^ (p vv q) => q`</p>
+
+					<p>`equiv not (not p ^^ (p vv q)) vv q` <a>implicação e disjunção</a> </p>
+
+					<p>`equiv (p vv not (p vv q)) vv q` <a>de'morgan</a> </p>
+
+					<p>`equiv (p vv not p) vv (q vv q)` <a>idempotência</a> </p>
+
+					<p>`equiv (p vv not p) vv q` <a>terceiro excluído</a> </p>
+
+					<p>`equiv top vv q` <a>dominação</a> </p>
+
+					<p>`equiv top` <a></a> </p>
+				</div>
+			</section>
+
+			<section>
+				<h3>Letra D</h2>
+
+			<div class="proposition" name="1.D a">
+				<p>`a equiv (p ^^ not q)`</p>
+			</div>
+
+				<div class="proposition">
+					<p>`(p ^^ not q) <=> ((p ^^ not q) => (q vv not p))`</p>
+
+					<p>`equiv a <=> (a => not a)` <a>1.D a</a> </p>
+
+					<p>`equiv a <=> not a` <a>contradição</a> </p>
+
+					<p>`equiv (a => not a) ^^ (not a => a)` <a>bi-implicação</a> </p>
+
+					<p>`equiv not a ^^ (not a => a)` <a>contradição</a> </p>
+
+					<p>`equiv not a ^^ a` <a>consequentia mirabilis</a> </p>
+
+					<p>`equiv bot` <a>terceiro excluído</a> </p>
+				</div>
+			</section>
+		</section>
+
+		<section>
+			<h2>Questão 2</h2>
+
+			<div>
+				<p class="local" name="a">`not p => r ^^ not s`</p>
+
+				<p class="local" name="b">`t => s`</p>
+
+				<p class="local" name="c">`u => not p`</p>
+
+				<p class="local" name="d">`not w`</p>
+
+				<p class="local" name="e">`u vv w`</p>
+
+				<p class="local" name="f">`therefore not t vv w`</p>
+			</div>
+
+			<p>Suponhamos que <a>f</a> seja falsa.</p>
+
+			<div class="proposition">
+				<p class="local" name="f">`not t vv w`</p>
+
+				<p>`not (not t vv w)`</p>
+
+				<p>`equiv t ^^ not w`</p>
+			</div>
+
+			<p>Logo `t` é verdadeiro.</p>
+
+			<p>Com base em <a>d</a> e <a>e</a>, `u` é verdadeiro.</p>
+
+			<div class="proposition">
+			<p>`u vv bot equiv u`</p>
+			</div>
+
+			<p>Com base em <a>c</a>, `p` é falso:</p>
+
+			<div class="proposition">
+				<p>`top => not p`</p>
+
+				<p>`equiv not p`</p>
+			</div>
+
+			<p>Com base em <a>a</a>, e sendo `p` falso, `r` é verdadeiro e `s` é falso:</p>
+
+			<div class="proposition">
+				<p>`top => r not s`</p>
+
+				<p>`equiv r ^^ not s`</p>
+			</div>
+
+			<p>No entanto, com base em <a>b</a> e na hipótese inicial (t é verdadeiro):</p>
+
+			<div class="proposition">
+				<p>`top => s`</p>
+
+				<p>`equiv s`</p>
+			</div>
+
+			<p>Havendo uma contradição no valor de s</p>
+		</section>
+
+		<section>
+			<h2>Questão 3</h2>
+
+			<p class="local" name="E">`E = (p oplus q) ^^ (p oplus not q)`</p>
+
+			<table>
+				<tr>
+					<th>`p`</th>
+					<th>`q`</th>
+					<th>`E`</th>
+				</tr>
+				<tr>
+					<td>F</td>
+					<td>F</td>
+					<td>F</td>
+				</tr>
+				<tr>
+					<td>F</td>
+					<td>V</td>
+					<td>F</td>
+				</tr>
+				<tr>
+					<td>V</td>
+					<td>F</td>
+					<td>F</td>
+				</tr>
+				<tr>
+					<td>V</td>
+					<td>V</td>
+					<td>F</td>
+				</tr>
+			</table>
+
+			<p><a>E</a> é uma contradição</p>
+		</section>
+
+		<section>
+			<h2>Questão 4</h2>
+
+			<p>Seja o operador `odot` definido conforme <a>definição de xnor</a></p>
+
+			<div class="proposition" name="definição de xnor">
+				<p>`(p odot q) equiv ((p^^q) vv (not p ^^ not q))`</p>
+			</div>
+
+			<section>
+				<h3>Letra A</h3>
+
+				<div class="proposition">
+					<p>`a equiv (p ^^ q)`</p>
+
+					<p>`b equiv (not p ^^ not q)`</p>
+
+					<p class="local" name="xnor para disjunção">`p odot q equiv a vv b` <a>definição de xnor</a> </p>
+
+					<p>`x odot y ^^ z equiv x odot (y ^^ z) because a vv b ^^ z equiv a vv (b ^^ z)` <a>xnor para disjunção</a> </p>
+				</div>
+			</section>
+
+			<section>
+				<h3>Letra B</h3>
+
+				<p>Hipótese:</p>
+
+				<table>
+					<tr>
+						<th>`x`</th>
+						<th>`y`</th>
+						<th>`z`</th>
+						<th>`x odot (y ^^ z)`</th>
+						<th>`(x odot y) ^^ (x odot z)`</th>
+					</tr>
+					<tr>
+						<td>F</td>
+						<td>F</td>
+						<td>F</td>
+						<td>V</td>
+						<td>V</td>
+					</tr>
+					<tr>
+						<td>F</td>
+						<td>F</td>
+						<td>V</td>
+						<td>V</td>
+						<td>F</td>
+					</tr>
+					<tr>
+						<td>F</td>
+						<td>V</td>
+						<td>F</td>
+						<td>V</td>
+						<td>F</td>
+					</tr>
+					<tr>
+						<td>F</td>
+						<td>V</td>
+						<td>V</td>
+						<td>F</td>
+						<td>F</td>
+					</tr>
+					<tr>
+						<td>V</td>
+						<td>F</td>
+						<td>F</td>
+						<td>F</td>
+						<td>F</td>
+					</tr>
+					<tr>
+						<td>V</td>
+						<td>F</td>
+						<td>V</td>
+						<td>F</td>
+						<td>F</td>
+					</tr>
+					<tr>
+						<td>V</td>
+						<td>V</td>
+						<td>F</td>
+						<td>F</td>
+						<td>F</td>
+					</tr>
+					<tr>
+						<td>V</td>
+						<td>V</td>
+						<td>V</td>
+						<td>V</td>
+						<td>V</td>
+					</tr>
+				</table>
+
+				<p>Retomando 1:</p>
+
+				<p>O operador `odot` não segue a lei da distributiva.</p>
+
+				<div class="proposition">
+					<p>`x odot (y ^^ z) != (x odot y) ^^ (x odot z)`</p>
+				</div>
+			</section>
+		</section>
+
+		<section>
+			<h2>Questão 5</h2>
+
+			<div>
+				<p class="local" name="a">`p ^^ not q => r`</p>
+				<p class="local" name="b">`p vv q`</p>
+				<p class="local" name="c">`q => p`</p>
+				<p class="local" name="d">`therefore r`</p>
+			</div>
+
+			<div class="proposition">
+				<p>`(q => p)` <a>c</a></p>
+				<p>`equiv (not q vv p)` <a>implicação e disjunção</a></p>
+				<p class="local" name="e">`equiv (p vv not q)` <a>comutatividade</a></p>
+			</div>
+
+			<div class="proposition" name="p verdadeiro">
+				<p>`(p vv q) ^^ (p vv not q)` <a>b</a> <a>e</a> </p>
+
+				<p>`((p ^^ (p vv q)) vv (not q ^^ (p vv q)))` <a>distributividade</a> </p>
+
+				<p>`((p^^p) vv (p^^q)) vv ((not q ^^ p) vv (not q ^^ q))` <a>distributividade</a> </p>
+
+				<p>`((p^^p) vv (p^^q)) vv ((not q ^^ p) vv bot)` <a>terceiro excluído</a> </p>
+
+				<p>`((p^^p) vv (p^^q)) vv (not q ^^ p)` <a>identidade</a></p>
+
+				<p>`(p vv (p^^q)) vv (not q ^^ p)` <a>idempotência</a></p>
+
+				<p>`p vv (not q ^^ p)` <a>absorção</a></p>
+
+				<p>`p` <a>absorção</a></p>
+			</div>
+
+			<p>A conclusão <a>d</a> seria sustentada pelo valor de `q`, pois, conforme em <a>a</a></p>
+
+			<div class="proposition">
+				<p>`p ^^ not q => r` <a>a</a></p>
+
+				<p>`equiv top ^^ not q => r` <a>p verdadeiro</a></p>
+
+				<p>`equiv not q => r`</p>
+			</div>
+
+			<p>Mas, já exauridas as considerações, nada leva à assumir o valor de `q`. E, portanto, nada leva a assumir o valor de `r`.</p>
+		</section>
+
+		<section>
+			<h2>Questão 6</h2>
+
+			<p>Como por (e) sabemos que s é falso e a falsidade de s implica na falsidade de t, conforme (c), resta que w seja verdadeiro, baseado em (g).</p>
+
+			<p>Sabendo que s é falso, baseado em (b), r é verdadeiro. A mesma lógica ocorrem em (d), de onde extrai-se que q é falso. A partir de (a), sendo q falso, p também é falso, completando a condição de (f) de onde afirma-se que u é verdadeiro.</p>
+
+			<p>Sendo u e w veradeiros, a conclusão em (h) é válida.</p>
+		</section>
+
+		<section>
+			<h2>Questão 7</h2>
+
+			<div class="proposition">
+				<p>a = [Sistema de arqivos está destravado]</p>
+
+				<p>b = [Novas mensagens serão enfileiradas]</p>
+
+				<p>c = [Novas mensagens serão enviadas para o buffer]</p>
+
+				<p>d = [Sistema funcionando]</p>
+
+				<p>`a => b`</p>
+
+				<p>`a <=> d`</p>
+
+				<p>`a vv not b => c`</p>
+
+				<p>`c`</p>
+			</div>
+
+			<p>O O sistema é consistente. As duas primeiras proposições lógicas não apresentam contradição, e o fato de `c` ser verdadeiro valida a implicação em `c`.</p>
+		</section>
+
+		<section>
+			<h2>Questão 8</h2>
+
+			<div class="proposition">
+				<p>`x leftarrow not (x odot y)`</p>
+				<p>`y leftarrow not (x odot y)`</p>
+				<p>`x leftarrow not (x odot y)`</p>
+			</div>
+
+			<div class="proposition" name="definição de xor">
+				<p>`not (p odot q) equiv p oplus q`</p>
+			</div>
+
+			<div class="proposition">
+				<p>`x leftarrow x oplus y`</p>
+				<p>`y leftarrow x oplus y`</p>
+				<p>`x leftarrow x oplus y`</p>
+			</div>
+
+			<p>O valor final de `x` contém o valor inicial de `y`, e o valor final de `y` contém o valor inicial de `x`.</p>
+
+			<p>É possível visualizar melhor a troca com mais identificadores para representar os três valores, respectivamente.</p>
+
+			<div class="proposition">
+				<p class="local identifier" name="a">`x oplus y`</p>
+				<p class="local identifier" name="b">`a oplus y`</p>
+				<p class="local identifier" name="c">`a oplus b`</p>
+			</div>
+
+			<div class="local" name="valor de b">
+				<p>`b equiv (x oplus y) oplus y`</p>
+				<p>`equiv x oplus (y oplus y)` <a>associatividade</a> </p>
+				<p>`equiv x oplus bot` <a>contradição</a> </p>
+				<p>`equiv x` <a>identidade</a> </p>
+			</div>
+
+			<div class="proposition">
+				<p>`c equiv a oplus x` <a>valor de b</a></p>
+				<p>`equiv (x oplus y) oplus x` <a>a</a></p>
+				<p>`equiv x oplus y oplus x` <a>associatividade</a> </p>
+				<p>`equiv x oplus x oplus y` <a>comutatividade</a> </p>
+				<p>`equiv bot oplus y` <a>contradição</a> </p>
+				<p>`equiv y` <a>identidade</a> </p>
+			</div>
+
+			<p>Lembrando que `b` representa o valor final de `y` (que é `x`) e `c` representa o valor final de `y` (que é `y`).</p>
+		</section>
+
+		<section>
+			<h2>Questão 9</h2>
+
+			<div class="proposition">
+				<p>`e = ` [Estudante dessa classe]</p>
+				<p>`l = ` [Ter lido o livro]</p>
+				<p>`p = ` [Passar no primeiro exame]</p>
+
+				<p>`exists e (not l(e))`</p>
+
+				<p>`forall e (p(e))`</p>
+
+				<p>`therefore exists e (not l(e) ^^ p(e))`</p>
+			</div>
+
+			<p>A conclusão pode ser justificada por instanciação.</p>
+
+			<div class="proposition">
+				<p>`exists e (not l(e)) => not l(c)`</p>
+
+				<p>`forall e (p(e)) => p(c)`</p>
+
+				<p>`therefore not l(c) ^^ p(c)`</p>
+			</div>
+		</section>
+
+		<section>
+			<h2>Questão 10</h2>
+
+			<div class="proposition">
+				<p>`i = ` [Diminuição da taxa para importação]</p>
+				<p>`f = ` [Diminuição da taxa federal]</p>
+				<p>`c = ` [Aumento do comércio]</p>
+
+				<p class="local" name="importação e comércio">`i => c`</p>
+				<p class="local" name="taxa federal e comércio">`f oplus not c equiv f odot c`</p>
+				<p>`i`</p>
+				<p>`therefore f`</p>
+			</div>
+
+			<p>Se `i` é verdadeiro, `c` também é com base em <a>importação e comércio</a>. Isso significa que `f` também é verdadeiro, conforme <a>taxa federal e comércio</a>. O argumento é válido.</p>
+		</section>
+
+		<section>
+			<h2>Questão 11</h2>
+
+			<p>`p => q equiv (p ^^ not q) => bot`</p>
+
+			<table>
+				<tr>
+					<th>`p`</th>
+					<th>`q`</th>
+					<th>`p => q`</th>
+					<th>`(p ^^ not q) => bot`</th>
+				</tr>
+				<tr>
+					<td>F</td>
+					<td>F</td>
+					<td>V</td>
+					<td>V</td>
+				</tr>
+				<tr>
+					<td>F</td>
+					<td>V</td>
+					<td>V</td>
+					<td>V</td>
+				</tr>
+				<tr>
+					<td>V</td>
+					<td>F</td>
+					<td>F</td>
+					<td>F</td>
+				</tr>
+				<tr>
+					<td>V</td>
+					<td>V</td>
+					<td>V</td>
+					<td>V</td>
+				</tr>
+			</table>
+		</section>
+
+		<section>
+			<h2>Questão 12</h2>
+
+			<section>
+			<p>Sabemos que existe um `x` que satisfaz `P` e que existe um `x` que satisfaz `Q`, o erro está em 3 e 5, ao supor que a instância que satisfaz cada propriedade é a mesma.</p>
+		</section>
+
+		<section>
+			<h2>Questão 13</h2>
+
+			<section>
+				<h3>Letra A</h3>
+
+				<p>`s_1 : p ^^ not q ^^ not r`</p>
+
+				<p>`s_1** : p vv not q vv not r`</p>
+
+				<p>`s_2 : (p ^^ q ^^ r) vv t`</p>
+
+				<p>`s_2** : (p vv q vv r) ^^ t`</p>
+
+				<p>`s_3 : (p vv bot) ^^ (q vv top)`</p>
+
+				<p>`s_3** : (p ^^ top) vv (q ^^ bot)`</p>
+			</section>
+		</section>
+
+			<section>
+				<h3>Letra B</h3>
+
+				<p>`s_1 : `(p ^^ q) vv p equiv p`</p>
+				<p>`s_1** : `(p vv q) ^^ p equiv p`</p>
+				<p>`s_1 equiv s_1**` <a>absorção</a></p>
+			</section>
+		</section>
+
+			<section>
+				<h3>Letra C</h3>
+
+				<p>`p : x vv top`</p>
+				<p>`p** : x ^^ bot`</p>
+				<p>`q : top`</p>
+				<p>`q** : bot`</p>
+				<p>`p equiv q` <a>dominação</a></p>
+				<p>`p** equiv q** ` <a>dominação</a></p>
+			</section>
+		</section>
+	</main>
+</body>
+</html>

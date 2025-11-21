@@ -11,6 +11,18 @@ const referenceable_class_to_display_name = {
 	"local" : "Proposição temporária"
 };
 
+function get_section (element)
+{
+	let section = element.parentElement;
+
+	while ( section.tagName != "SECTION" )
+	{
+		section = section.parentElement;
+	}
+
+	return section
+}
+
 function main ()
 {
 	const internalReferenceables = document.querySelectorAll("div[name], p[name]");
@@ -36,12 +48,7 @@ function main ()
 		if (referenceableClassName == "local")
 		{
 			// Reset local counter on new section
-			let section = referenceable.parentElement;
-
-			while ( section.tagName != "SECTION" )
-			{
-				section = section.parentElement;
-			}
+			let section = get_section(referenceable);
 
 			if (last_section != section)
 			{
@@ -72,15 +79,21 @@ function main ()
 			title = document.createElement("p");
 			title.textContent = `${referenceableClassDisplayName} ${current_index}: ${referenceable.getAttribute("name")}`;
 			referenceable.prepend(title);
+			title.setAttribute("class", "title");
+		}
+		else if (referenceable.classList.contains("identifier"))
+		{
+			referenceable.prepend(
+				`\`${referenceable.getAttribute("name")} =\` `
+			);
 		}
 		else if (referenceable.tagName == "P")
 		{
 			title = document.createElement("span");
 			title.textContent = ` [${referenceableClassDisplayName} ${current_index}: ${referenceable.getAttribute("name")}]`;
 			referenceable.append(title);
+			title.setAttribute("class", "title");
 		}
-
-		title.setAttribute("class", "title");
 	}
 
 	// Anchor completion
@@ -98,7 +111,20 @@ function main ()
 		{
 			referenceable = internalReferenceables[referenceable_index];
 
+			let is_valid_referenceable = false;
+
 			if (referenceable.getAttribute("name") == anchor.textContent)
+			{
+				if (referenceable.classList.contains("local"))
+				{
+					// Local referenceable is in the same section of its reference
+					is_valid_referenceable = get_section(anchor) == get_section(referenceable);
+				}
+				else
+				{ is_valid_referenceable = true; }
+			}
+
+			if (is_valid_referenceable)
 			{
 				found_referenced = true;
 
@@ -106,9 +132,13 @@ function main ()
 
 				referenceableClassDisplayName = referenceable_class_to_display_name[referenceableClassName];
 
-				if (referenceable.classList.contains("local"))
+				if (referenceable.classList.contains("identifier"))
 				{
-					anchor.textContent = `[${referenceable.lastChild.textContent}]`;
+					anchor.textContent = `[Definição de ${referenceable.getAttribute("name")}]`;
+				}
+				else if (referenceable.tagName == "P")
+				{
+					anchor.textContent = `${referenceable.lastChild.textContent}`;
 				}
 				else
 				{
